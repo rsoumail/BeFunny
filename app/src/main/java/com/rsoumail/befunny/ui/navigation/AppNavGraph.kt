@@ -39,7 +39,13 @@ fun AppNavGraph(
 
         composable(route = Screen.FunnyPlayer.route) {
             FunnyPlayerRoute(
-                it.arguments?.getString(FUNNY_URL_ARG) ?: ""
+                it.arguments?.getString(FUNNY_URL_ARG) ?: "",
+                onCancelNavigation = {
+                    /*navController.navigate(
+                        route = Screen.FunnyRecorder.route
+                    )*/
+                    navController.popBackStack()
+                }
             )
         }
     }

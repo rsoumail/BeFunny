@@ -7,11 +7,18 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun FunnyPlayerRoute(
     funnyUrl: String,
+    onCancelNavigation: () -> Unit,
     funnyPlayerViewModel: FunnyPlayerViewModel = koinViewModel()
 ) {
     FunnyPlayerScreen(
-        funny = Funny(url = funnyUrl),
+        funny = Funny(location = funnyUrl),
         player = funnyPlayerViewModel.player(),
-        publishFunny = { funny -> funnyPlayerViewModel.publishFunny(funny = funny)}
+        onCancelNavigateTo = { onCancelNavigation() },
+        publishFunny = { funny ->
+            funnyPlayerViewModel.publishFunny(funny = funny)
+        },
+        onCancel = { funny ->
+            funnyPlayerViewModel.cancel(funny.location)
+        }
     )
 }

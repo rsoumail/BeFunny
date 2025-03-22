@@ -31,6 +31,8 @@ import com.rsoumail.befunny.feature.funnyreal.ui.common.model.Funny
 fun FunnyPlayerScreen(
     funny: Funny,
     player: ExoPlayer,
+    onCancel: (Funny) -> Unit,
+    onCancelNavigateTo: () -> Unit,
     publishFunny: (Funny) -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
@@ -46,7 +48,7 @@ fun FunnyPlayerScreen(
             ) {
                 player.apply {
                     setMediaItem(
-                        MediaItem.fromUri(funny.url)
+                        MediaItem.fromUri(funny.location)
                     )
                     prepare()
                     playWhenReady = true
@@ -54,7 +56,10 @@ fun FunnyPlayerScreen(
 
                 PlayerPreview(
                     player = player,
-                    onCancelClick = { publishFunny(funny) }
+                    onCancelClick = {
+                        onCancel(funny)
+                        onCancelNavigateTo()
+                    }
                 )
 
             }
