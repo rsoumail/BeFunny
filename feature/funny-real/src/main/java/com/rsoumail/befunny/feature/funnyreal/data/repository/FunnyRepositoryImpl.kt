@@ -15,7 +15,7 @@ class FunnyRepositoryImpl(
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : FunnyRepository {
     override suspend fun post(funny: Funny) {
-        TODO("Not yet implemented")
+        // Todo("Not yet implemented")
     }
 
     override suspend fun get(): Flow<List<Funny>> {

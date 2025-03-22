@@ -72,7 +72,6 @@ fun FunnyPlayerScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
 
         ) {
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
@@ -82,6 +81,7 @@ fun FunnyPlayerScreen(
                         .background(Color.Transparent),
                     onClick = {
                         publishFunny(funny)
+                        onCancelNavigateTo()
                     }
                 ) {
                     Icon(

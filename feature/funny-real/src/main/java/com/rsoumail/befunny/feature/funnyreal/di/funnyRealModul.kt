@@ -25,7 +25,8 @@ val funnyRealModule = module {
     viewModel {
         FunnyPlayerViewModel(
             player = get(),
-            fileRepository = get()
+            fileRepository = get(),
+            publishFunnyUseCase = get()
         )
     }
 
