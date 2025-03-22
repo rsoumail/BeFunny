@@ -43,7 +43,8 @@ const val FUNNY_TIME_LIMIT = 3000
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FunnyRecorderScreen(
-    navigateToPlayer: (String) -> Unit
+    navigateToPlayer: (String) -> Unit,
+    getFileRecorder: suspend () -> File
 ) {
 
     val scaffoldState = rememberBottomSheetScaffoldState()
@@ -82,18 +83,22 @@ fun FunnyRecorderScreen(
         }
 
         isRecording = true
-        val file = File(context.cacheDir, "temp-record-video.mp4")
-        recording = controller.startRecording(
-            FileOutputOptions.Builder(file).build(),
-            // Todo Manage permission
-            AudioConfig.create(true),
-            ContextCompat.getMainExecutor(context.applicationContext)
-        ) { event ->
-            if (event is Finalize) {
-                recording?.close()
-                isRecording = false
-                recording = null
-                navigateToPlayer(file.path)
+
+        scope.launch {
+            getFileRecorder().let {
+                recording = controller.startRecording(
+                    FileOutputOptions.Builder(it).build(),
+                    // Todo Manage permission
+                    AudioConfig.create(true),
+                    ContextCompat.getMainExecutor(context.applicationContext)
+                ) { event ->
+                    if (event is Finalize) {
+                        recording?.close()
+                        isRecording = false
+                        recording = null
+                        navigateToPlayer(it.path)
+                    }
+                }
             }
         }
     }
@@ -108,9 +113,23 @@ fun FunnyRecorderScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(padding)
                 .background(Color.Black)
 
         ) {
+            Column(
+                modifier = Modifier
+                    .align(Alignment.TopCenter),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    "30",
+                    modifier = Modifier,
+                    color = Color.White,
+                    fontSize = 30.sp
+                    )
+            }
+
             Column(
                 modifier = Modifier
                     .align(Alignment.Center)
