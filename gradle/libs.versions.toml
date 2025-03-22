@@ -16,7 +16,7 @@ materialExtended = "1.7.8"
 media3Exoplayer = "1.5.1"
 media3Ui = "1.5.1"
 lifeCycleViewModelCompose = "2.8.7"
-
+room = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +53,10 @@ androidx-media3-ui = { group = "androidx.media3", name = "media3-ui", version.re
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinAndroid"}
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koinAndroid"}
 koin-androidx-compose-navigation = { group = "io.insert-koin", name = "koin-androidx-compose-navigation", version.ref = "koinAndroid"}
+
+androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "room"}
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
