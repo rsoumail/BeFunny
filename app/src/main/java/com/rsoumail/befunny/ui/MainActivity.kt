@@ -1,4 +1,4 @@
-package com.rsoumail.befunny
+package com.rsoumail.befunny.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
