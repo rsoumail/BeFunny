@@ -25,13 +25,12 @@ import com.rsoumail.befunny.feature.funnyreal.R
 fun RecorderController(
     onRecordClick: () -> Unit,
     onSwitchCameraClick: () -> Unit,
-    onGalleryClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onGalleryClick: () -> Unit
 ) {
     Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(50.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(50.dp),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         IconButton(
@@ -68,7 +67,6 @@ fun RecorderController(
                 tint = Color.White
             )
         }
-
 
         IconButton(
             onClick = {
