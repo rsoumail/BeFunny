@@ -1,0 +1,17 @@
+package com.rsoumail.befunny.feature.funnyreal.ui.player
+
+import androidx.compose.runtime.Composable
+import com.rsoumail.befunny.feature.funnyreal.ui.common.model.Funny
+import org.koin.androidx.compose.koinViewModel
+
+@Composable
+fun FunnyPlayerRoute(
+    funnyUrl: String,
+    funnyPlayerViewModel: FunnyPlayerViewModel = koinViewModel()
+) {
+    FunnyPlayerScreen(
+        funny = Funny(url = funnyUrl),
+        player = funnyPlayerViewModel.player(),
+        publishFunny = { funny -> funnyPlayerViewModel.publishFunny(funny = funny)}
+    )
+}

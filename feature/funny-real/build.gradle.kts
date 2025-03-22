@@ -37,6 +37,8 @@ dependencies {
 
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 
@@ -44,12 +46,18 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.extended)
 
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
     implementation(libs.androidx.camerax.core)
     implementation(libs.androidx.camerax.camera2)
     implementation(libs.androidx.camerax.lifecycle)
     implementation(libs.androidx.camerax.video)
     implementation(libs.androidx.camerax.view)
     implementation(libs.androidx.camerax.extensions)
+
+    implementation(libs.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

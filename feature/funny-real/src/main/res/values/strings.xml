@@ -3,4 +3,5 @@
     <string name="open_funnies_description">Open Funnies</string>
     <string name="switch_camera_description">Switch Camera</string>
     <string name="record_video_description">Record Video</string>
+    <string name="send_description">Send</string>
 </resources>
