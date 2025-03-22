@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.rsoumail.befunny.feature.funnyreal"
+    namespace = "com.rsoumail.befunny.core.common"
     compileSdk = 35
 
     defaultConfig {
@@ -35,32 +34,9 @@ android {
 
 dependencies {
 
-    implementation(project(":core:common"))
-
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-
     implementation(libs.material)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.material.extended)
-
-    implementation(libs.koin.android)
-    implementation(libs.koin.androidx.compose)
-
-    implementation(libs.androidx.camerax.core)
-    implementation(libs.androidx.camerax.camera2)
-    implementation(libs.androidx.camerax.lifecycle)
-    implementation(libs.androidx.camerax.video)
-    implementation(libs.androidx.camerax.view)
-    implementation(libs.androidx.camerax.extensions)
-
-    implementation(libs.media3.exoplayer)
-    implementation(libs.androidx.media3.ui)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
