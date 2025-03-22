@@ -1,4 +1,4 @@
-package com.rsoumail.befunny.ui.theme
+package com.rsoumail.befunny.core.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "BeFunny"
 include(":app")
- 
+include(":core:designsystem")
