@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="open_funnies_description">Open Funnies</string>
+    <string name="switch_camera_description">Switch Camera</string>
+    <string name="record_video_description">Record Video</string>
+</resources>

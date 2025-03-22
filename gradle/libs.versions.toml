@@ -11,6 +11,9 @@ composeBom = "2025.03.00"
 appcompat = "1.7.0"
 material = "1.12.0"
 koinAndroid = "4.0.0"
+cameraX = "1.4.1"
+materialExtended = "1.7.8"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,9 +31,18 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-material-extended = { group = "androidx.compose.material", name= "material-icons-extended", version.ref = "materialExtended" }
 
 koin-androidx-compose-navigation = { group = "io.insert-koin", name = "koin-androidx-compose-navigation", version.ref = "koinAndroid"}
+
+androidx-camerax-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraX"}
+androidx-camerax-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "cameraX"}
+androidx-camerax-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraX"}
+androidx-camerax-video = { group = "androidx.camera", name = "camera-video", version.ref = "cameraX"}
+androidx-camerax-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraX"}
+androidx-camerax-extensions = { group = "androidx.camera", name = "camera-extensions", version.ref = "cameraX"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
