@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BeFunny</string>
+    <string name="new_funny_notification_title">It\'s Time to smile</string>
+    <string name="new_funny_notification_description">20 secs of laugh, it\'s your turn</string>
+    <string name="best_funny_notification_title">It\'s time for the best funny</string>
+    <string name="best_funny_notification_description">The best funny of today to make you smile</string>
 </resources>

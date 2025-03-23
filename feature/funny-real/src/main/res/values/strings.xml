@@ -4,4 +4,10 @@
     <string name="switch_camera_description">Switch Camera</string>
     <string name="record_video_description">Record Video</string>
     <string name="send_description">Send</string>
+    <string name="empty_funnies">There are no funnies yet</string>
+    <string name="no">Non</string>
+    <string name="yes">Oui</string>
+    <string name="stop_description">Stop</string>
+    <string name="on_vote_dialog_title">It\'s your turn</string>
+    <string name="on_vote_dialog_description">Could you be better ?</string>
 </resources>
