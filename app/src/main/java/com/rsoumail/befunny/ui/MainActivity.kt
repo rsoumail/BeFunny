@@ -13,13 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.rsoumail.befunny.core.designsystem.theme.BeFunnyTheme
-import com.rsoumail.befunny.ui.navigation.MainScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        // just for the example,
+        // on real app i should handle correctly permissions required
         if (!hasPermissions()) {
             ActivityCompat.requestPermissions(
                 this,
@@ -53,7 +54,8 @@ class MainActivity : ComponentActivity() {
         private val REQUIRED_PERMISSIONS = arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.POST_NOTIFICATIONS
         )
     }
 }

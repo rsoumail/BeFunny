@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cameraswitch
 import androidx.compose.material.icons.filled.PhotoLibrary
+import androidx.compose.material.icons.filled.StopCircle
 import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,12 +26,13 @@ import com.rsoumail.befunny.feature.funnyreal.R
 fun RecorderController(
     onRecordClick: () -> Unit,
     onSwitchCameraClick: () -> Unit,
-    onGalleryClick: () -> Unit
+    onGalleryClick: () -> Unit,
+    isVideoRecording: Boolean
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(50.dp),
+            .fillMaxWidth(),
+            //.padding(50.dp),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         IconButton(
@@ -61,8 +63,16 @@ fun RecorderController(
                 .background(Color.Transparent),
         ) {
             Icon(
-                imageVector = Icons.Default.Videocam,
-                contentDescription = stringResource(R.string.record_video_description),
+                imageVector = if (!isVideoRecording) {
+                    Icons.Default.Videocam
+                } else {
+                    Icons.Default.StopCircle
+                },
+                contentDescription = if (!isVideoRecording) {
+                    stringResource(R.string.record_video_description)
+                } else {
+                    stringResource(R.string.stop_description)
+                },
                 modifier = Modifier.size(40.dp),
                 tint = Color.White
             )

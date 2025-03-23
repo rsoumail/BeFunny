@@ -8,6 +8,7 @@ import com.rsoumail.befunny.feature.funnyreal.domain.model.Funny
 import com.rsoumail.befunny.feature.funnyreal.domain.repository.FunnyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 class FunnyRepositoryImpl(
@@ -20,17 +21,19 @@ class FunnyRepositoryImpl(
 
     override suspend fun get(): Flow<List<Funny>> {
         return flow {
-            withContext(dispatchers.io()) {
-                localFunnyDataSource.get().collect { funnies ->
-                    funnies.forEach { funny ->
+            localFunnyDataSource.get().collect { funnies ->
+                val domainFunnies = arrayListOf<Funny>()
+                funnies.forEach { funny ->
+                    domainFunnies.add(
                         Funny(
                             id = funny.id,
                             location = funny.location
                         )
-                    }
+                    )
                 }
+                emit(domainFunnies)
             }
-        }
+        }.flowOn(dispatchers.io())
     }
 
     override suspend fun save(funny: Funny) {

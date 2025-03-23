@@ -5,20 +5,27 @@ import com.rsoumail.befunny.feature.funnyreal.ui.common.model.Funny
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun FunnyPlayerRoute(
+fun PlayerRoute(
     funnyUrl: String,
     onCancelNavigation: () -> Unit,
-    funnyPlayerViewModel: FunnyPlayerViewModel = koinViewModel()
+    playerViewModel: PlayerViewModel = koinViewModel(),
+    isFromRecorder: Boolean = true
 ) {
-    FunnyPlayerScreen(
+    playerViewModel.addVideoLocation(funnyUrl)
+
+    PlayerScreen(
         funny = Funny(location = funnyUrl),
-        player = funnyPlayerViewModel.player(),
+        player = playerViewModel.player(),
         onCancelNavigateTo = { onCancelNavigation() },
         publishFunny = { funny ->
-            funnyPlayerViewModel.publishFunny(funny = funny)
+            playerViewModel.publishFunny(funny = funny)
         },
         onCancel = { funny ->
-            funnyPlayerViewModel.cancel(funny.location)
-        }
+            playerViewModel.cancel(funny.location)
+        },
+        voteOnFunny = { funny ->
+            playerViewModel.vote(funny)
+        },
+        isFromRecorder = isFromRecorder
     )
 }

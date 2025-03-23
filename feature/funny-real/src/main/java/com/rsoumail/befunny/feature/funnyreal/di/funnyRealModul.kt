@@ -1,5 +1,8 @@
 package com.rsoumail.befunny.feature.funnyreal.di
 
+import androidx.camera.view.CameraController
+import androidx.camera.view.LifecycleCameraController
+import androidx.core.content.ContextCompat
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.room.Room
@@ -13,9 +16,11 @@ import com.rsoumail.befunny.feature.funnyreal.domain.repository.FileRepository
 import com.rsoumail.befunny.feature.funnyreal.domain.repository.FunnyRepository
 import com.rsoumail.befunny.feature.funnyreal.domain.usecase.GetFunniesUseCase
 import com.rsoumail.befunny.feature.funnyreal.domain.usecase.PublishFunnyUseCase
-import com.rsoumail.befunny.feature.funnyreal.ui.player.FunnyPlayerViewModel
-import com.rsoumail.befunny.feature.funnyreal.ui.recorder.FunnyRecorderViewModel
+import com.rsoumail.befunny.feature.funnyreal.domain.usecase.VoteOnFunnyUseCase
+import com.rsoumail.befunny.feature.funnyreal.ui.player.PlayerViewModel
+import com.rsoumail.befunny.feature.funnyreal.ui.recorder.RecorderViewModel
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
@@ -23,18 +28,24 @@ const val FUNNY_DATABASE_NAME = "be_funny_real"
 
 val funnyRealModule = module {
     viewModel {
-        FunnyPlayerViewModel(
+        PlayerViewModel(
             player = get(),
             fileRepository = get(),
-            publishFunnyUseCase = get()
+            publishFunnyUseCase = get(),
+            voteOnFunnyUseCase = get()
         )
     }
 
     viewModel {
-        FunnyRecorderViewModel(
-            fileRepository = get()
+        RecorderViewModel(
+            fileRepository = get(),
+            getFunniesUseCase = get(),
+            controller = get(),
+            executor = get()
         )
     }
+
+    factory { ContextCompat.getMainExecutor(androidContext()) }
 
     factory {
         PublishFunnyUseCase(
@@ -44,6 +55,12 @@ val funnyRealModule = module {
 
     factory {
         GetFunniesUseCase(
+            funnyRepository = get()
+        )
+    }
+
+    factory {
+        VoteOnFunnyUseCase(
             funnyRepository = get()
         )
     }
@@ -76,7 +93,13 @@ val funnyRealModule = module {
         ).build()
     }
 
-    single<ExoPlayer> {
+    single<LifecycleCameraController> {
+        LifecycleCameraController(androidContext()).apply {
+            setEnabledUseCases(CameraController.VIDEO_CAPTURE)
+        }
+    }
+
+    factory<ExoPlayer> {
         ExoPlayer.Builder(androidApplication()).build().apply {
             repeatMode = Player.REPEAT_MODE_ONE
         }
