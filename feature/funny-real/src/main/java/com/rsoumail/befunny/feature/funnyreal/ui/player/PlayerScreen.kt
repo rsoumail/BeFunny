@@ -1,5 +1,6 @@
 package com.rsoumail.befunny.feature.funnyreal.ui.player
 
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.media3.exoplayer.ExoPlayer
 import com.rsoumail.befunny.feature.funnyreal.ui.common.model.Funny
@@ -25,18 +27,26 @@ fun PlayerScreen(
     onCancelNavigateTo: () -> Unit,
     publishFunny: (Funny) -> Unit,
     voteOnFunny: (Funny) -> Unit,
+    onConfirmChallenge: () -> Unit,
     isFromRecorder: Boolean = true
 ) {
+    val context = LocalContext.current
     var showDialog by remember { mutableStateOf(false) }
     Column(
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxHeight().background(Color.Black)
+        modifier = Modifier
+            .fillMaxHeight()
+            .background(Color.Black)
     ) {
         PlayerPreview(
             player = player,
             onCancelClick = {
-                onCancel(funny)
-                onCancelNavigateTo()
+                if (isFromRecorder) {
+                    onCancel(funny)
+                    onCancelNavigateTo()
+                } else {
+                    (context as Activity).finish()
+                }
             }
         )
 
@@ -62,9 +72,10 @@ fun PlayerScreen(
 
         if (showDialog) {
             OnVoteDialog(
-                onConfirm = onCancelNavigateTo,
-                onRefuse = onCancelNavigateTo
-            ) { }
+                onConfirm = onConfirmChallenge,
+                onRefuse = { (context as Activity).finish() },
+                onDismiss = { showDialog = false }
+            )
         }
     }
 }

@@ -55,7 +55,7 @@ class RecorderViewModel(
             val remainingSecondString = if (secondsRemaining.toInt() == 0) {
                 ""
             } else {
-                "${String.format("%02d", secondsRemaining)}"
+                String.format("%02d", secondsRemaining)
             }
             _remainingTime.value = remainingSecondString
             println("Seconds remaining: $secondsRemaining")

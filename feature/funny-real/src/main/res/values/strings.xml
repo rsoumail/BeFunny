@@ -8,6 +8,6 @@
     <string name="no">Non</string>
     <string name="yes">Oui</string>
     <string name="stop_description">Stop</string>
-    <string name="on_vote_dialog_title">It\'s your turn</string>
-    <string name="on_vote_dialog_description">Could you be better ?</string>
+    <string name="on_vote_dialog_title">Who will be the funniest</string>
+    <string name="on_vote_dialog_description">Will you be funnier ?</string>
 </resources>

@@ -44,9 +44,6 @@ fun PlayerPreview(
                     useController = false
                     this.player = player
                 }
-            },
-            onRelease = {
-                // player.release()
             }
         )
 
@@ -59,10 +56,11 @@ fun PlayerPreview(
             }
         ) {
             Icon(
-                imageVector = Icons.Default.Cancel,
+                imageVector = Icons.Filled.Cancel,
                 contentDescription = stringResource(R.string.send_description),
                 modifier = Modifier
-                    .size(35.dp),
+                    .size(35.dp)
+                    .background(Color.Transparent),
                 tint = Color.White
             )
         }

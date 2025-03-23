@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.ThumbDown
@@ -26,7 +27,8 @@ fun PlayerController(
     onSend: () -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         if (isFromRecorder) {
@@ -49,7 +51,8 @@ fun PlayerController(
 
             IconButton(
                 modifier = Modifier
-                    .background(Color.Transparent),
+                    .background(Color.Red, shape = CircleShape)
+                    .size(80.dp),
                 onClick = {
                     onDisLike()
                 }
@@ -65,7 +68,8 @@ fun PlayerController(
 
             IconButton(
                 modifier = Modifier
-                    .background(Color.Transparent),
+                    .background(Color(red = 17, green = 155, blue = 21), shape = CircleShape)
+                    .size(80.dp),
                 onClick = {
                     onLike()
                 }

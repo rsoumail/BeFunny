@@ -8,6 +8,7 @@ import org.koin.androidx.compose.koinViewModel
 fun PlayerRoute(
     funnyUrl: String,
     onCancelNavigation: () -> Unit,
+    onConfirmChallenge: () -> Unit,
     playerViewModel: PlayerViewModel = koinViewModel(),
     isFromRecorder: Boolean = true
 ) {
@@ -26,6 +27,7 @@ fun PlayerRoute(
         voteOnFunny = { funny ->
             playerViewModel.vote(funny)
         },
+        onConfirmChallenge = onConfirmChallenge,
         isFromRecorder = isFromRecorder
     )
 }
