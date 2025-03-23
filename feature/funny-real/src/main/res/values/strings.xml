@@ -2,11 +2,11 @@
 <resources>
     <string name="open_funnies_description">Open Funnies</string>
     <string name="switch_camera_description">Switch Camera</string>
-    <string name="record_video_description">Record Video</string>
+    <string name="record_video_description">Record Funny</string>
     <string name="send_description">Send</string>
     <string name="empty_funnies">There are no funnies yet</string>
-    <string name="no">Non</string>
-    <string name="yes">Oui</string>
+    <string name="no">Yes</string>
+    <string name="yes">No</string>
     <string name="stop_description">Stop</string>
     <string name="on_vote_dialog_title">Who will be the funniest</string>
     <string name="on_vote_dialog_description">Will you be funnier ?</string>
