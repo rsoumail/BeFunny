@@ -45,12 +45,6 @@ fun RecorderScreen(
         loadFunnies()
     }
 
-    val onGalleryClick = {
-        scope.launch {
-            scaffoldState.bottomSheetState.expand()
-        }
-    }
-
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
         sheetPeekHeight = 0.dp,
@@ -86,7 +80,11 @@ fun RecorderScreen(
             RecorderController(
                 onRecordClick = { record() },
                 onSwitchCameraClick = { switchCamera() },
-                onGalleryClick = { onGalleryClick() },
+                onGalleryClick = {
+                    scope.launch {
+                        scaffoldState.bottomSheetState.expand()
+                    }
+                },
                 isVideoRecording = isVideoRecording
             )
         }
