@@ -112,7 +112,7 @@ class RecorderViewModel(
     fun record(onRecordFinnish: (String) -> Unit) {
         if (recording != null) {
             recording?.stop()
-            timer.cancel()
+
             _isRecording.value = false
             recording = null
             return
@@ -134,6 +134,7 @@ class RecorderViewModel(
                     ) { event ->
                         if (event is Finalize) {
                             recording?.close()
+                            timer.cancel()
                             _isRecording.value = false
                             recording = null
                             onRecordFinnish(it.path)

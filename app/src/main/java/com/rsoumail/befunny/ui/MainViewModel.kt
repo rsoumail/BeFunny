@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 const val NOTIFICATION_SIMULATOR_WORKER = "notification_simulator"
 
 class MainViewModel(
-    workManager: WorkManager
+    private val workManager: WorkManager
 ) : ViewModel() {
 
     private val periodicWorkRequest = PeriodicWorkRequest.Builder(
@@ -22,11 +22,12 @@ class MainViewModel(
             .build())
         .build()
 
-    init {
+   fun setupNotificationSimulator() {
         workManager.enqueueUniquePeriodicWork(
             NOTIFICATION_SIMULATOR_WORKER,
             ExistingPeriodicWorkPolicy.KEEP,
             periodicWorkRequest
         )
     }
+
 }

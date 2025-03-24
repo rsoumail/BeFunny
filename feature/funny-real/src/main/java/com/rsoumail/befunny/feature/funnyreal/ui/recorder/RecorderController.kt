@@ -31,7 +31,6 @@ fun RecorderController(
     Row(
         modifier = Modifier
             .fillMaxWidth(),
-            //.padding(50.dp),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         IconButton(

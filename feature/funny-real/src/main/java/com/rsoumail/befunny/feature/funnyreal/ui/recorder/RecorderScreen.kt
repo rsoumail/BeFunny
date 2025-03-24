@@ -15,11 +15,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,23 +34,20 @@ fun RecorderScreen(
     record: () -> Unit,
     switchCamera: () -> Unit,
     isVideoRecording: Boolean,
-    onOpenGallery: () -> Unit,
+    loadFunnies: () -> Unit,
     remainingTime: String,
     controller: LifecycleCameraController
 ) {
     val scaffoldState = rememberBottomSheetScaffoldState()
     val scope = rememberCoroutineScope()
-    var isFunniesLoaded by remember {
-        mutableStateOf(false)
+
+    LaunchedEffect(Unit) {
+        loadFunnies()
     }
 
     val onGalleryClick = {
         scope.launch {
             scaffoldState.bottomSheetState.expand()
-            if (!isFunniesLoaded) {
-                onOpenGallery()
-                isFunniesLoaded = true
-            }
         }
     }
 

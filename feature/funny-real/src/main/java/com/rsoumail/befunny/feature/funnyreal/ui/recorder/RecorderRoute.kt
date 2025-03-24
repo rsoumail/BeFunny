@@ -16,7 +16,7 @@ fun RecorderRoute(
         },
         switchCamera = { recorderViewModel.switch() },
         isVideoRecording = recorderViewModel.isRecording.collectAsState().value,
-        onOpenGallery = { recorderViewModel.loadFunnies() },
+        loadFunnies = { recorderViewModel.loadFunnies() },
         remainingTime = recorderViewModel.remainingTime.collectAsState().value,
         controller = recorderViewModel.getController(),
     )

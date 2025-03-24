@@ -1,8 +1,14 @@
 package com.rsoumail.befunny.ui.navigation
 
 import android.net.Uri
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.os.bundleOf
@@ -26,6 +32,8 @@ fun AppNavGraph(
     NavHost(
         navController = navController,
         startDestination = Screen.FunnyRecorder.route,
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None },
         modifier = modifier
             .fillMaxSize()
     ) {
@@ -49,27 +57,32 @@ fun AppNavGraph(
             })
         ) { backStackEntry ->
 
-            var isFromRecorder = false
+            var isFromRecorder by remember {
+                mutableStateOf(false)
+            }
 
-            val funnyLocation =
+            val funnyLocation by remember {
                 backStackEntry.arguments?.getString(FUNNY_LOCATION_ARG)?.let { location ->
                     isFromRecorder = true
-                    location
-                } ?: Uri.parse("android.resource://${context.packageName}/${R.raw.sample_funny}").toString()
-
-            val onCancelNavigation = if (isFromRecorder) {
-                { navController.popBackStack() }
-            } else {
-                {
-                    navController.navigate(
-                        route = Screen.FunnyRecorder.route
-                    )
-                }
+                    mutableStateOf(location)
+                } ?: mutableStateOf(
+                    Uri.parse("android.resource://${context.packageName}/${R.raw.sample_funny}").toString()
+                )
             }
 
             PlayerRoute(
                 funnyLocation,
-                onCancelNavigation = { onCancelNavigation() },
+                onCancelNavigation = if (isFromRecorder) {
+                    {
+                        navController.popBackStack(Screen.FunnyRecorder.route, inclusive = false)
+                    }
+                } else {
+                    {
+                        navController.navigate(
+                            route = Screen.FunnyRecorder.route
+                        )
+                    }
+                },
                 onConfirmChallenge = { navController.navigate(Screen.FunnyRecorder.route) },
                 isFromRecorder = isFromRecorder
             )

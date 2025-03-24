@@ -51,7 +51,7 @@ fun FunniesGallery(
                     funny.metaData?.thumbs?.asImageBitmap()?.let {
                         Image(
                             bitmap = it,
-                            contentDescription = "Video",
+                            contentDescription = stringResource(R.string.video_description),
                             modifier = Modifier
                                 .clip(RoundedCornerShape(10.dp))
 

@@ -1,6 +1,7 @@
 package com.rsoumail.befunny.feature.funnyreal.ui.player
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import com.rsoumail.befunny.feature.funnyreal.ui.common.model.Funny
 import org.koin.androidx.compose.koinViewModel
 
@@ -12,7 +13,9 @@ fun PlayerRoute(
     playerViewModel: PlayerViewModel = koinViewModel(),
     isFromRecorder: Boolean = true
 ) {
-    playerViewModel.addVideoLocation(funnyUrl)
+    LaunchedEffect(playerViewModel) {
+        playerViewModel.addVideoLocation(funnyUrl)
+    }
 
     PlayerScreen(
         funny = Funny(location = funnyUrl),
